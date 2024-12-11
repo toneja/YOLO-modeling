@@ -11,8 +11,12 @@ from ultralytics import YOLO
 
 def train_yolo(dataset):
     """docstring goes here"""
-    # Initialize GPU acceleration
-    torch.cuda.set_device(0)
+    # Initialize GPU acceleration if available
+    if torch.cuda.is_available():
+        torch.cuda.set_device(0)
+        device = 0
+    else:
+        device = "cpu"
     # Clear out any old results and cache files
     if os.path.exists(f"{dataset}/runs"):
         shutil.rmtree(f"{dataset}/runs")
@@ -30,7 +34,7 @@ def train_yolo(dataset):
         workers=4,
         project=f"{dataset}/runs/train",
         name="yolo_labelstudio_train",
-        device=0,
+        device=device,
     )
     # eval model
     model.val()
