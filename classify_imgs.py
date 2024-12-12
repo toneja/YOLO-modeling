@@ -1,11 +1,15 @@
 #!/usr/bin/evn python3
 
 import os
+import shutil
 import sys
 from ultralytics import YOLO
 
 
 def classify_images(model_path, image_dir):
+    # Clear out any old prediction results
+    if os.path.exists("runs"):
+        shutil.rmtree("runs")
     # Load the previously trained model
     model = YOLO(model_path)
     # Loop through the testing directory
