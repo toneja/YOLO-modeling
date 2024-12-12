@@ -48,10 +48,8 @@ if __name__ == "__main__":
     else:
         ds_count = 0
         for folder in os.listdir("."):
-            if os.path.isdir(folder):
-                for file in os.listdir(folder):
-                    if file.endswith(".yaml"):
-                        train_yolo(os.path.basename(folder))
-                        ds_count += 1
+            if os.path.isdir(folder) and os.path.exists(f"{folder}/data.yaml"):
+                train_yolo(os.path.basename(folder))
+                ds_count += 1
     if ds_count == 0:
         sys.exit(f"Usage: {sys.argv[0]} [DATASET]")
