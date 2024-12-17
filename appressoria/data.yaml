@@ -1,0 +1,7 @@
+# change %%USERPROFILE%% to point to the proper file path
+path: %%USERPROFILE%%/Github Repos/YOLO-modeling/appressoria
+train: images/train
+val: images/val
+
+nc: 4
+names: ['appressoria', 'debris', 'germinated', 'ungerminated']

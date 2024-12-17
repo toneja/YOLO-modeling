@@ -1,9 +1,8 @@
 *.cache
 *.csv
 *.jpg
-*.json
 *.png
 *.pt
-*.txt
-*.yaml
+images
+labels
 runs

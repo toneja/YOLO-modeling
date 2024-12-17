@@ -1,0 +1,4 @@
+germinated
+ungerminated
+appressoria
+debris
