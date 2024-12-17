@@ -18,7 +18,9 @@ def classify_images(model_path, image_dir):
         if not image_name.lower().endswith((".jpg", ".jpeg")):
             continue
         # Evaluate each image
-        model.predict(image_path, save=True, imgsz=1024, conf=0.5, save_txt=True, save_conf=True)
+        model.predict(
+            image_path, save=True, imgsz=1024, conf=0.5, save_txt=True, save_conf=True
+        )
         print(f"Processed {image_name}")
 
 

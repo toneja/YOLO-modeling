@@ -4,6 +4,15 @@ import numpy as np
 import os
 
 
+def return_results(predictions, total):
+    return (
+        f"Appressoria :  {predictions[0]}, {round(predictions[0] / total * 100, 1)}%\n"
+        f"Debris      :  {predictions[1]}, {round(predictions[1] / total * 100, 1)}%\n"
+        f"Germinated  :  {predictions[2]}, {round(predictions[2] / total * 100, 1)}%\n"
+        f"Ungerminated:  {predictions[3]}, {round(predictions[3] / total * 100, 1)}%"
+    )
+
+
 def count_predictions():
     pred_counts = [0, 0, 0, 0]
     for file in os.listdir("runs/detect/predict/labels"):
@@ -16,10 +25,7 @@ def count_predictions():
     total_preds = sum(pred_counts)
     print("Objects counted:")
     print("================")
-    print(f"Appressoria:  {pred_counts[0]}, {round(pred_counts[0] / total_preds * 100, 1)}%")
-    print(f"Debris:       {pred_counts[1]}, {round(pred_counts[1] / total_preds * 100, 1)}%")
-    print(f"Germinated:   {pred_counts[2]}, {round(pred_counts[2] / total_preds * 100, 1)}%")
-    print(f"Ungerminated: {pred_counts[3]}, {round(pred_counts[3] / total_preds * 100, 1)}%")
+    print(return_results(pred_counts, total_preds))
 
 
 if __name__ == "__main__":
