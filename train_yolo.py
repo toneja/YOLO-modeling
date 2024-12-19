@@ -43,10 +43,10 @@ def train_yolo(dataset):
 
 
 if __name__ == "__main__":
+    ds_count = 0
     if len(sys.argv) == 2:
         train_yolo(sys.argv[1])
     else:
-        ds_count = 0
         for folder in os.listdir("."):
             if os.path.isdir(folder) and os.path.exists(f"{folder}/data.yaml"):
                 train_yolo(os.path.basename(folder))
