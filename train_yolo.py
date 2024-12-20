@@ -26,7 +26,7 @@ def train_yolo(dataset):
     # load small yolo dataset
     model = YOLO("yolov8s.pt")
     # train model
-    results = model.train(
+    model.train(
         data=f"{dataset}/data.yaml",
         epochs=50,
         batch=16,
