@@ -1,4 +1,4 @@
-germinated
-ungerminated
 appressoria
 debris
+germinated
+ungerminated
