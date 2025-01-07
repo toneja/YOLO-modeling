@@ -5,6 +5,8 @@
 import os
 import shutil
 import sys
+import numpy as np
+from tabulate import tabulate
 from ultralytics import YOLO
 
 
@@ -27,6 +29,35 @@ def classify_images(model_path, image_dir):
         print(f"Processed {image_name}")
 
 
+def count_predictions(project):
+    """docstring goes here"""
+    classes = np.genfromtxt(f"{project}/classes.txt", dtype="str")
+    pred_counts = [0] * len(classes)
+    for file in os.listdir("runs/detect/predict/labels"):
+        if file.endswith(".txt"):
+            preds = np.genfromtxt(
+                f"runs/detect/predict/labels/{file}", dtype=str, delimiter=" "
+            )
+            for pred in preds:
+                pred_counts[int(pred[0])] += 1
+    total_preds = sum(pred_counts)
+    print(f"\nProject: {project.upper()}")
+    print("=" * (9 + len(project)))
+    results = []
+    headers = ["Class", "Count", "Percentage"]
+    i = 0
+    for pred_class in classes:
+        results.append(
+            [
+                pred_class,
+                pred_counts[i],
+                f"{round(pred_counts[i] / total_preds * 100, 1)}%",
+            ]
+        )
+        i += 1
+    print(tabulate(results, headers=headers))
+
+
 def main():
     """docstring goes here"""
     project = ""
@@ -42,6 +73,7 @@ def main():
     image_dir = f"{project}/images/classify"
     if os.path.exists(model_path) and os.path.exists(image_dir):
         classify_images(model_path, image_dir)
+        count_predictions(project)
 
 
 if __name__ == "__main__":
