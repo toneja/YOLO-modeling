@@ -1,4 +1,6 @@
-#!/usr/bin/evn python3
+#!/usr/bin/env python3
+
+""" docstring goes here"""
 
 import os
 import shutil
@@ -7,6 +9,7 @@ from ultralytics import YOLO
 
 
 def classify_images(model_path, image_dir):
+    """docstring goes here"""
     # Clear out any old prediction results
     if os.path.exists("runs"):
         shutil.rmtree("runs")
@@ -24,9 +27,23 @@ def classify_images(model_path, image_dir):
         print(f"Processed {image_name}")
 
 
-if __name__ == "__main__":
+def main():
+    """docstring goes here"""
+    project = ""
     if len(sys.argv) == 2 and os.path.isdir(sys.argv[1]):
         project = sys.argv[1]
-        model_path = f"{project}/runs/train/yolo_labelstudio_train/weights/best.pt"
-        image_dir = f"{project}/images/testing"
+    else:
+        for folder in os.listdir("."):
+            if os.path.isdir(folder) and os.path.exists(f"{folder}/data.yaml"):
+                project = folder
+    if not project:
+        sys.exit(f"Usage: {sys.argv[0]} [DATASET]")
+    model_path = f"{project}/runs/train/yolo_labelstudio_train/weights/best.pt"
+    image_dir = f"{project}/images/classify"
+    if os.path.exists(model_path) and os.path.exists(image_dir):
         classify_images(model_path, image_dir)
+
+
+if __name__ == "__main__":
+    os.chdir(os.path.dirname(__file__))
+    main()

@@ -42,9 +42,10 @@ def train_yolo(dataset):
     model.export(format="onnx")
 
 
-if __name__ == "__main__":
+def main():
+    """docstring goes here"""
     ds_count = 0
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 2 and os.path.exists(f"{sys.argv[1]}/data.yaml"):
         train_yolo(sys.argv[1])
         ds_count += 1
     else:
@@ -54,3 +55,8 @@ if __name__ == "__main__":
                 ds_count += 1
     if ds_count == 0:
         sys.exit(f"Usage: {sys.argv[0]} [DATASET]")
+
+
+if __name__ == "__main__":
+    os.chdir(os.path.dirname(__file__))
+    main()
