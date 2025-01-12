@@ -31,7 +31,7 @@ def classify_images(model_path, image_dir):
 
 def count_predictions(project):
     """docstring goes here"""
-    classes = np.genfromtxt(f"{project}/classes.txt", dtype="str")
+    classes = np.genfromtxt(f"{project}/classes.txt", dtype=str)
     pred_counts = [0] * len(classes)
     for file in os.listdir("runs/detect/predict/labels"):
         if file.endswith(".txt"):
@@ -41,8 +41,8 @@ def count_predictions(project):
             for pred in preds:
                 pred_counts[int(pred[0])] += 1
     total_preds = sum(pred_counts)
-    print(f"\nProject: {project.upper()}")
-    print("=" * (9 + len(project)))
+    sep = "=" * (9 + len(project))
+    print(f"\n{sep}\nProject: {project.upper()}\n{sep}")
     results = []
     headers = ["Class", "Count", "Percentage"]
     i = 0

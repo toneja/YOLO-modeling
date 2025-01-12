@@ -39,7 +39,7 @@ def train_yolo(dataset):
     # eval model
     model.val()
     # export model
-    model.export(format="onnx")
+    model.export(format="engine")
 
 
 def main():
