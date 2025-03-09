@@ -51,6 +51,13 @@ def main():
     else:
         for folder in os.listdir("."):
             if os.path.isdir(folder) and os.path.exists(f"{folder}/data.yaml"):
+                # fix-up path on first run
+                with open(f"{folder}/data.yaml", "r") as file:
+                    file_contents = file.read()
+                if "DATASET_PATH" in file_contents:
+                    new_contents = file_contents.replace("%%DATASET_PATH%%", os.path.abspath(folder))
+                    with open(f"{folder}/data.yaml", "w") as file:
+                        file.write(new_contents)
                 train_yolo(os.path.basename(folder))
                 ds_count += 1
     if ds_count == 0:

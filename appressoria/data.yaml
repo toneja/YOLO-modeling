@@ -1,5 +1,4 @@
-# change %%USERPROFILE%% to point to the proper file path
-path: %%USERPROFILE%%/Github Repos/YOLO-modeling/appressoria
+path: %%DATASET_PATH%%
 train: images/train
 val: images/val
 
