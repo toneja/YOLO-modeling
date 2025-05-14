@@ -1,0 +1,6 @@
+path: %%DATASET_PATH%%
+train: images/train
+val: images/val
+
+nc: 2
+names: ['germinated', 'ungerminated']
