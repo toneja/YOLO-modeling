@@ -1,9 +1,0 @@
-<View>
-  <Image name="image" value="$image" zoom="true" zoomControl="true"/>
-  <RectangleLabels name="label" toName="image">
-    <Label value="appressoria" background="purple"/>
-    <Label value="debris" background="red"/>
-    <Label value="germinated" background="green"/>
-    <Label value="ungerminated" background="blue"/>
-  </RectangleLabels>
-</View>

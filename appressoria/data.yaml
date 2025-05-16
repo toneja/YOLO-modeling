@@ -1,6 +1,0 @@
-path: %%DATASET_PATH%%
-train: images/train
-val: images/val
-
-nc: 4
-names: ['appressoria', 'debris', 'germinated', 'ungerminated']
